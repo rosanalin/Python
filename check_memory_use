@@ -1,0 +1,6 @@
+#check memory use 
+test = c003_dfsig_ALL
+#mem_train = train.memory_usage(index=True).sum()
+mem_test=test.memory_usage(index=True).sum()
+#print("train dataset uses ",mem_train/ 1024**2," MB")
+print("test dataset uses ",mem_test/ 1024**2," MB")
