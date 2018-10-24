@@ -1,0 +1,49 @@
+# Import data sets - AUGUST 2018
+
+path =r'C:\Users\'
+allFiles = glob.glob(os.path.join(path,"*.csv.gz"))
+df = pd.DataFrame()
+df1 = pd.DataFrame()
+dfsig_web_201808 = pd.DataFrame()   # CHANGE MONTH
+list_ = []
+for file_ in allFiles:
+    
+    cols_to_keep = [0,1,2,3,4,6,7,8,9,13,15,17,18,19]
+    column_names = ['timestamp',
+                    'webpage',
+                    'suid',
+                    'sha1_email',
+                    'sha256_email',
+                    'device',
+                    'source',
+                    'medium',
+                    'page_type',
+                    'region_name',
+                    'community_name',
+                    'community_staus',
+                    'plan_name',
+                    'plan_id']
+    parse_dates = ['timestamp']
+    dtype={'device': np.object_,
+           'source':np.object_ ,
+           'medium':np.object_,
+           'page_type':np.object_,
+           'region_name':np.object_, 
+           'community_name':np.object_,
+           'plan_name':np.object_,
+           'plan_id' :np.object_
+          }
+    df = pd.read_csv(file_, 
+                        skiprows=0, 
+                        compression='gzip',
+                        #chunksize=1000000, 
+                        usecols=cols_to_keep,
+                        delimiter=",",
+                        header=0,
+                        #names = column_names,
+                        dtype=dtype,
+                        parse_dates=parse_dates,
+                        index_col=None,
+                     )
+    list_.append(df)
+dfsig_web_201808 = pd.concat(list_)   # CHANGE MONTH
