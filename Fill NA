@@ -1,0 +1,4 @@
+# substituing by given value:
+
+values = {'filter6m': 0}
+dfsig_web_201808=dfsig_web_201808.fillna(value=values)
