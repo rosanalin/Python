@@ -1,0 +1,18 @@
+# Getting the first (timestamp)
+
+# Creating index by ID and Timestamp. Get Min (Oldest) info.
+idx = c3_source.groupby(['contactid'])['createdonutc'].transform(min) == c3_source['createdonutc']
+c3_source[idx].head()
+c3_source_contact = c3_source[idx]
+
+# Selecting the first row
+c3_source_contact0 = c3_source_contact.drop_duplicates('contactid', keep = 'first')
+
+# Keep some variables
+c3_source_contact1 = c3_source_contact0[['contactid', 'createdonutc' ,'crm_source']]
+
+# Change variables names
+c3_source_contact1 = c3_source_contact1.rename(columns = {'createdonutc' : 'dt_lead_1st', 'crm_source' : 'crm_lead_1st'})
+
+# Check
+c3_source_contact1.head()
