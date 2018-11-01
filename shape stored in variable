@@ -1,0 +1,20 @@
+# If you want to check different Datasets
+
+IO_data_east1 = IO_data_east[IO_data_east['IONumber1'].isna()]
+IO_data_east2 = IO_data_east[IO_data_east['IONumber1'].notna()]
+IO_data_west1 = IO_data_west[IO_data_west['IONumber1'].isna()]
+IO_data_west2 = IO_data_west[IO_data_west['IONumber1'].notna()]
+
+# Storing in variable
+
+sh1_east = IO_data_east1.shape
+sh2_east = IO_data_east2.shape
+sh1_west = IO_data_west1.shape
+sh2_west = IO_data_west2.shape
+
+# If need to print number of rows of each dataset
+
+print("east1:",sh1_east[0])
+print("east2:",sh2_east[0])
+print("west1:",sh1_west[0])
+print("west2:",sh2_west[0])
