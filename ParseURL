@@ -1,0 +1,21 @@
+from urlparse import urlparse, parse_qs
+
+# Selecting all existing URL
+
+webpage = c003_dfsig_web[c003_dfsig_web['webpage'].notnull()]['webpage']
+webpage = webpage.drop_duplicates()
+
+# Parsing URL
+
+list_ =[]
+listparse = []
+df_parsewebpage = pd.DataFrame()
+for x in webpage:
+    o = urlparse(x)
+    h = parse_qs(o.query)
+    df_parsewebpage = pd.DataFrame([x],[h])
+    list_.append([x,h])
+    listparse.append(h)
+df_parsewebpage = pd.DataFrame(list_) 
+
+parse_qs(o.query)
